@@ -1,0 +1,36 @@
+<html>
+<head>
+</head>
+<body>
+    <div id="mi_app">
+        Al derecho dice {{mensaje}} <br>
+        Al revés dice {{mensajeAlReves}}, {{ahora}}
+        <div v-if="esPalindromo">
+            ¡¡Palíndromo!!
+        </div>
+    </div>
+    
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        var app = new Vue({
+            el: "#mi_app",
+            data: {
+                mensaje:"roma"
+            },
+            computed: {
+                mensajeAlReves : function() {
+                    console.log("llamando a mensajeAlReves")
+                    return this.mensaje.split('').reverse().join('')
+                },
+                esPalindromo : function() {
+                    return this.mensaje == this.mensajeAlReves
+                },
+                ahora: function() {
+                    return new Date()
+                }
+            }
+        })
+    </script>
+</body>
+</html>

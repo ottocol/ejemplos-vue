@@ -1,0 +1,45 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        img {
+            padding: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div id="mi_app">
+        <h1>Buscar GIFs</h1>
+        Término de búsqueda: <input type="text" id="texto" v-model="buscado">
+        <div id="resultados">
+            <img v-for="imag in datos" v-bind:src="imag.images.fixed_height_downsampled.url"/>
+        </div>
+    </div>
+    
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        var app = new Vue({
+            el: "#mi_app",
+            data: {
+               buscado:'', 
+               datos:[]
+            },
+            watch: {
+              buscado(nuevoValor) {
+                  fetch('https://api.giphy.com/v1/gifs/search?api_key=5blwmGFpH3hGIkPRn7IcLxWOq8j8rQSQ&q='+nuevoValor)
+                    .then(function(resp){
+                        if (resp.ok)
+                            return resp.json()
+                        else
+                            throw new Error(resp.status)
+                    }).then((resultados)=>{                      
+                        this.datos = resultados.data
+                        console.log(this.datos)
+                    })                    
+              }  
+            }
+        })
+    </script>
+</body>
+</html>

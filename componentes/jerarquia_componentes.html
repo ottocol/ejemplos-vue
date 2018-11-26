@@ -1,0 +1,39 @@
+<html>
+<head>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app"></div>  
+  <script>   
+  
+  Vue.component('lista-personajes', {
+      props:['lista'],
+      template:`
+        <div>
+            <h1>Personajes</h1>
+            <ul>
+                <personaje v-for="p in lista" v-bind:datos="p"/>
+            </ul>  
+        </div>  
+      `
+  })
+
+  Vue.component('personaje', {
+      props: ['datos'],
+      template: `<li>{{datos.nombre}} ({{datos.edad}})</li>`
+  })
+
+  var app = new Vue({
+      el: '#app',
+      data: {
+        personajes : [
+          {"nombre":"Daenerys Targarien","edad":13},
+          {"nombre":"Eddard Stark","edad":35},
+          {"nombre":"Cersei Lannister", "edad":34}  
+        ]
+      },
+      template: '<lista-personajes v-bind:lista="personajes"/>'      
+  })
+ </script>
+</body>
+</html>

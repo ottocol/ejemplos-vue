@@ -1,0 +1,25 @@
+<html>
+<head>
+</head>
+<body>
+    <div id="mi_app">
+        <h1>{{contador}}</h1>
+    </div>
+    
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        var app = new Vue({
+            el: "#mi_app",
+            data: {
+               contador: 0
+            },
+            created: function(){
+                setInterval(() => {
+                    this.contador++
+                }, 1000);
+            }
+        })
+    </script>
+</body>
+</html>

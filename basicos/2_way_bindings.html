@@ -1,0 +1,21 @@
+<html>
+<head>
+</head>
+<body>
+    <div id="mi_app">
+        <input type="text" v-model="texto"> <br>
+        {{texto}}
+    </div>
+    
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        var app = new Vue({
+            el: "#mi_app",
+            data: {
+              texto: 'hola'
+            }
+        })
+    </script>
+</body>
+</html>
